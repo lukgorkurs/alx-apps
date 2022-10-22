@@ -1,34 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
-
-
-// const booksFromLocalDatabase = [
-//   {
-//     title: "Harry Potter i kamień filozoficzny",
-//     category: "Fantasy",
-//     author: "J.K. Rowling",
-//     year: 1992,
-//     price: 49.99,
-//   },
-//   {
-//     title: "God father",
-//     category: "Crime",
-//     author: "Mario Puzo",
-//     year: 1960,
-//     price: 59.99,
-//   }
-// ]
-
-// let bookLibrary = JSON.parse(localStorage.getItem('books'));
-
-// if(!bookLibrary) {
-//   bookLibrary = booksFromLocalDatabase
-// }
-
-// Forma skrocona przy uzyciu operatora ??
-
-// const bookLibrary = JSON.parse(localStorage.getItem('books')) ?? booksFromLocalDatabase;
-const bookLibrary = JSON.parse(localStorage.getItem('books')) ?? [];
+import {post, get} from '../helpers/http.js';
+import URLS from '../helpers/urls.js';
 
 const booksList = document.querySelector('#list');
 const booksForm = document.querySelector('#booksForm');
@@ -41,6 +14,9 @@ const addBookYearInput = document.querySelector('#newBookYear')
 const addBookAuthorInput = document.querySelector('#newBookAuthor')
 const addBookPriceInput = document.querySelector('#newBookPrice')
 
+
+let bookLibrary = []
+
 // * Destrukcja obiektow
 // books.forEach(({ title, category  }) => {
 //   booksList.innerHTML += `
@@ -50,6 +26,60 @@ const addBookPriceInput = document.querySelector('#newBookPrice')
 //     </li>
 //   `
 // })
+
+const fetchBooks = () => {
+  // fetch
+//   fetch(URLS.books)
+//     .then((response) => {
+//       return response.json();
+//     })
+    get(URLS.books)
+    .then(data => {
+      bookLibrary = data;
+      renderBooks(data);
+    })
+    .catch(error => {
+      console.log(error.message);
+    })
+}
+
+
+const postBook = (newBook) => {
+  post(URLS.books,newBook)
+  .then(() => {
+    bookLibrary.push(newBook);
+    renderBooks(bookLibrary)
+  })
+}
+
+// const postBook = (newBook) => {
+//   fetch(URLS.books, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': "application/json"
+//     },
+//     body: JSON.stringify(newBook)
+//   })
+//   .then(res => res.json())
+//   .then(() => {
+//     bookLibrary.push(newBook);
+//     renderBooks(bookLibrary)
+//   })
+// }
+
+// ES7 Async/await*
+// const fetchBooks = async () => {
+//   try {
+//     const response = await fetch('http://localhost:3000/books')
+//     const data = await response.json()
+
+//     bookLibrary = data;
+//     renderBooks(data);
+//   } catch(error) {
+//     console.log(error.message);
+//   }
+// }
+
 
 const renderBooks = (books) =>  {
   booksList.innerHTML = '';
@@ -62,7 +92,6 @@ const renderBooks = (books) =>  {
         <p>Autor: ${book.author}</p>
         <p>Rok Wydania: ${book.year}</p>
         <p>Cena: ${book.price}zł</p>
-        <p>UUID: ${uuidv4()}</p>
       </li>
     `
   })
@@ -91,9 +120,7 @@ const addBook = event => {
     price: addBookPriceInput.value
   }
 
-  bookLibrary.push(newBook);
-  localStorage.setItem('books', JSON.stringify(bookLibrary))
-  renderBooks(bookLibrary)
+  postBook(newBook)
 
   addBookTitleInput.value = ''
   addBookCategoryInput.value = ''
@@ -102,6 +129,10 @@ const addBook = event => {
   addBookPriceInput.value = ''
 }
 
-renderBooks(bookLibrary)
+fetchBooks()
 booksForm.addEventListener('submit', filterBook)
 addBookForm.addEventListener('submit', addBook)
+
+
+
+

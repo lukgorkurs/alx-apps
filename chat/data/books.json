@@ -1,15 +1,50 @@
 {
-"books" : [{
-  "title":"Harry Potter i kamień filozoficzny",
-  "category":"Fantasy",
-  "author":"J.K. Rowling",
-  "year":1992,
-  "price":49.99
-},{
-  "title":"God father",
-  "category":"Crime",
-  "author":"Mario Puzo",
-  "year":1960,
-  "price":59.99
-}]
+  "books": [
+    {
+      "title": "Harry Potter i kamień filozoficzny",
+      "category": "Fantasy",
+      "author": "J.K. Rowling",
+      "year": 1992,
+      "price": 49.99
+    },
+    {
+      "title": "God father",
+      "category": "Crime",
+      "author": "Mario Puzo",
+      "year": 1960,
+      "price": 59.99
+    },
+    {
+      "id": "1f1958fa-ef6c-4688-a99e-74228dd79da5",
+      "title": "s",
+      "category": "2",
+      "author": "f",
+      "year": "d",
+      "price": "2"
+    },
+    {
+      "id": "b0935cd4-b8c5-40cd-a13a-7d8fdcce43ab",
+      "title": "ala",
+      "category": "ma",
+      "author": "dad",
+      "year": "kota",
+      "price": "3er2wd"
+    },
+    {
+      "id": "8ce3408e-77dc-4d63-9ee4-cf6e57a47d6d",
+      "title": "W sieci",
+      "category": "poradnik",
+      "author": "Tekla",
+      "year": "1983",
+      "price": "2.5"
+    },
+    {
+      "id": "d68cce62-b015-473f-a8d8-1f91b21499ec",
+      "title": "121",
+      "category": "21312",
+      "author": "123123",
+      "year": "12312",
+      "price": "213123"
+    }
+  ]
 }
