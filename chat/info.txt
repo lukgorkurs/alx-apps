@@ -1,0 +1,74 @@
+https://npmjs.com/
+
+npm init
+
+npm install
+
+npm install --save-dev //tylko w trybie developerskim
+
+.gitignore
+
+npm run xxx  uruchomienie skryptu
+
+
+pm2
+
+  <script type="module" src="./js/index.js"></script>
+
+
+
+setTimeout opóźnienie
+setInterval
+
+
+
+
+HTTP
+
+GET pobrać
+POST wysłać
+PUT/PATCH update 
+DELETE
+
+
+200 OK
+
+
+GET, REMOVE - params
+POST PUT -body
+
+
+
+
+
+REST API              zbiór dobrych praktyk w komunikacji
+
+
+HTTP
+Metody:
+GET - chcemy pobrać coś przez HTTP
+POST - chcemy coś wysłać przez HTTP
+PUT/PATCH - update czegoś przez HTTP
+DELETE - chcemy coś usunąć przez HTTP
+Kody odpowiedzi:
+200 OK
+401 Unauthorised
+404 Not Found
+301 Mover Permanently
+500 Server Error
+Wysyłanie danych
+GET, DELETE - params
+POST, PUT - body
+Dobre praktyki budowania API - REST API
+API
+Endpoint
+damianrogulski.com/books - endpoint do BOOKS
+damianrogulski.com/cars - endpoint do CARS
+REST API
+damianrogulski.com/books
+GET - pobierze wszystko
+GET books/1 - pobierze książkę o ID 1
+POST - stworzy nowa książkę
+PUT - zupdateuje książkę lub stworzy
+DELETE books/1 - usunie książkę o ID 1
+REST API - stateless, zasady autoryzacji (JWT Token), metody
