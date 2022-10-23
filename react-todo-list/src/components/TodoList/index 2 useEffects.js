@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -6,64 +6,48 @@ import { v4 as uuidv4 } from 'uuid';
 // 2. Stworz listę, która będzie przetrzymywała zadanie do wyswietlenia (tylko jedno)
 // 3*. przy uzyciu funkcji map, spraw zeby mozna bylo dodawac wiele zadan
 // 4**. dodaj hook useEffect i dane odczytuj i zapisuj do localStorage :)
-
-
-//obsluga endpointa http    jsonplaceholder /
-
 // 5***. dodaj json-server i zrob obsluge API
-
 function TodoList() {
   const [todoInputValue, setTodoInputValue] = useState('');
   // const [todoText, setTodoText] = useState('')
   const [todos, setTodos] = useState([]);
-  const [currentTime, setCurrentTime] = useState(null);
 
-  // useEffect - wbudowany hook do asynchronicznosci
+    useEffect(() => {
 
-  // przeznaczenie
-  // 1. zapytania http
-  // 2. ustawienie komponentow (timer, stoper, poczatkowa konfiguracja)
+         console.log('wykonal fa')
 
-  // Opis
-  // pusta tablica [] oznacza, ze funkcja odpali tylko tylko raz, po pierwszym renderze
-
-  useEffect(() => {
-    getTime(); // pierwsze wywolanie (zeby nie bylo opoznienia)
-    // setInterval odpala sie co sekunde
-    setInterval(() => {
-      // co sekunde update czasu
-      getTime();
-    }, 1000)
-  }, [])
-
-  const getTime = () => {
-    // obiekt Date jest to wbudowany obiekt do obslugi dat
-    const date = new Date();
-
-
-    const temp = date.toString();
-
-    setCurrentTime(temp.substring(0,24))
-  }
+        let daneStorageJSON= JSON.stringify(todos);
+        localStorage.setItem("TodosLG",daneStorageJSON);
+     }, [todos]);
 
   const handleTodoInputChange = event => {
+    event.preventDefault();
     setTodoInputValue(event.target.value)
   }
 
+  const handleRemove = event => {
+//    event.preventDefault();
+    //console.log(todos)
+
+    setTodos([]);
+    
+
+
+  }
+
+
+
   const handleSubmit = event => {
-    // MUST HAVE PRZY SUBMICIE
     event.preventDefault();
 
     // setTodoText(todoInputValue)
 
+    // 1. Zamienic Math.random() na uuid.
     const newTodo = {
-      id: uuidv4(),
-      title: todoInputValue,       
-      createdAt:currentTime    
+    //   id: Math.random(),
+      id: uuidv4(),      
+      title: todoInputValue
     }
-
-
-    console.log(currentTime)
 
     const newTodos = todos.concat(newTodo);
     setTodos(newTodos);
@@ -71,16 +55,9 @@ function TodoList() {
     setTodoInputValue('')
   }
 
-  const handleRemoveTodos = () => {
-    setTodos([]);
-  }
-
   return (
     <div>
       <p>Todo List</p>
-      {/* React dziala tak, ze jak element zwroci null, to go nie wyswietla */}
-      {currentTime ? <p>{currentTime}</p> : null}
-      {/* {currentTime && <p>{currentTime}</p>} */}
       <form onSubmit={handleSubmit}>
         <label>
           Task
@@ -102,11 +79,11 @@ function TodoList() {
         {/* <li>{TODOS[0].title}</li> */}
 
         {todos.map(todo => {
-          return <li key={todo.id}>{todo.title} / {todo.createdAt ? todo.createdAt : null}</li>
+          return <li key={todo.id}>{todo.title}</li>
         })}
       </ul>
       {/* 2. Zrobic obsluge usuwania zadan z listy */}
-      <button onClick={handleRemoveTodos}>Remove Todos</button>
+      <button type='reset' onClick={handleRemove}>Remove Todos</button>
     </div>
   )
 }

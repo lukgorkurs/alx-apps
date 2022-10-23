@@ -1,0 +1,18 @@
+EsLint - sprawdza błędy
+
+Axios (zamiast fetch)
+
+
+npx create-react-app my-app
+
+npx create-react-app react-todo-list
+
+kent c doods
+
+
+komponent max 100 linii logiki
+
+atomic design
+
+
+npm run test+

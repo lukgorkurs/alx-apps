@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server ../data/task.json --port 3001"
+    "server": "json-server ./data/todo.json --port 3001"
   },
   "eslintConfig": {
     "extends": [
