@@ -6,6 +6,7 @@ import PARAMS from '../../../helpers/params.js';
 import ChatMessages from '../../molecules/ChatMessages/ChatMessages';
 import MessagesForm from '../../molecules/MessagesForm/MessagesForm';
 import WelcomeMessage from '../../atoms/WelcomeMessage/WelcomeMessage';
+import Button from '../../atoms/WelcomeMessage/Button/Button';
 
 function App() {
 
@@ -19,10 +20,18 @@ function App() {
 
 useEffect(() => {
 
-     
+       
       if (PARAMS.storage === 'LS') {
+       
           const newChat = JSON.parse(localStorage.getItem(PARAMS.lsname));              
-          if (newChat != null) setChat(newChat);
+          if (newChat.length > 0) {
+              setChat(newChat);
+              
+              console.log(newChat)
+              
+
+          }
+          
       }
 
       if (PARAMS.storage === 'JSON') {
@@ -31,7 +40,7 @@ useEffect(() => {
         .catch((e) => console.log(e.message))
       }
 
-      ///-=----
+
       let interval = null;
     
       interval = setInterval(() => {
@@ -39,9 +48,9 @@ useEffect(() => {
       }, 1000);
     
       return () => clearInterval(interval);
-      ///-=----
 
- }, [seconds]);
+
+ }, []);
 
   
   const handleSubmit = event => {
@@ -106,6 +115,42 @@ useEffect(() => {
     }      
   }
 
+
+  
+  
+  
+
+  const handleRemoveAll = event => {
+  
+     
+    // const removeItem = chat.filter((post) => {
+    //       return post.id !== id;
+    // });c
+
+     setChat([]);
+
+
+    console.log('test')
+
+    //setChat('');
+
+    
+    if (PARAMS.storage === 'LS') { 
+      
+      let daneStorageJSON= JSON.stringify('');
+      localStorage.setItem(PARAMS.lsname,daneStorageJSON);
+    }
+
+
+    if (PARAMS.storage === 'JSON') { 
+
+      console.log('test')
+      chat.forEach(element => remove(PARAMS.server,element.id));
+             
+    }      
+  }
+
+
   return (
     <div className="App">      
       <header className="App-header">
@@ -134,6 +179,16 @@ useEffect(() => {
         handleRemoveMessageFromApp={handleRemove}
       
       />
+      
+      {/* <button onClick={() => handleRemoveAll()}>Remove all</button> */}
+
+      <Button
+          text = 'Remove all'
+          handleClick = {handleRemoveAll}
+      />
+
+
+      
       
      
 

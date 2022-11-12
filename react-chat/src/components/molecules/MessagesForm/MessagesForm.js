@@ -1,4 +1,7 @@
+import Button from '../../atoms/WelcomeMessage/Button/Button';
+
 function MessagesForm(props) {
+
 
         return (
 
@@ -20,7 +23,14 @@ function MessagesForm(props) {
                         onChange={props.handleAuthorInputChange}
                     />
                 </label>
-                <button type='submit'>Add Post</button>
+                {/* <button type='submit'>Add Post</button> */}
+
+                <Button
+                      text = 'Add Post'
+                      handleClick = {props.handleSubmit}
+                />
+
+
             </form>
 
         )

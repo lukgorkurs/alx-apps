@@ -40,3 +40,18 @@ push a concat w tabeli concat dodaje a push inwazyjnie nadpisuje
 kompozycja
 
 atomic design react
+
+{
+  "chat": [
+    {
+      "id": "13ec81e4-52f5-427c-b682-5fc38032b7ec",
+      "message": "",
+      "author": "13123"
+    },
+    {
+      "id": "f4919cb1-176b-48d3-9bdc-eb85f7c477d3",
+      "message": "121",
+      "author": "13123"
+    }
+  ]
+}

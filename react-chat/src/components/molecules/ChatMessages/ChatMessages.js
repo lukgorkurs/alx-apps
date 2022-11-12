@@ -1,4 +1,10 @@
+import Button from '../../atoms/WelcomeMessage/Button/Button';
+
+
 function ChatMessages(props) {
+
+  
+
     return (
          
 
@@ -6,7 +12,14 @@ function ChatMessages(props) {
      
         {props.messagesFromApp.map(post => {
           return <li key={post.id}>{post.message} <br/> {post.author} <br/>
-            <button onClick={() => props.handleRemoveMessageFromApp(post.id)}>X</button>
+            {/* <button onClick={() => props.handleRemoveMessageFromApp(post.id)}>X</button> */}
+
+
+            <Button
+                      text = 'X'
+                      handleClick = {() => props.handleRemoveMessageFromApp(post.id)}
+             />
+
             
             <hr/>
           </li>
