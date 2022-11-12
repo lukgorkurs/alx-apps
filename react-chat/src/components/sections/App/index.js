@@ -50,7 +50,7 @@ useEffect(() => {
       return () => clearInterval(interval);
 
 
- }, []);
+ }, [seconds]);
 
   
   const handleSubmit = event => {

@@ -11,7 +11,7 @@ function ChatMessages(props) {
          <ul>
      
         {props.messagesFromApp.map(post => {
-          return <li key={post.id}>{post.message} <br/> {post.author} <br/>
+          return <li key={post.id}>{post.message} <br/> <b>{post.author}</b>
             {/* <button onClick={() => props.handleRemoveMessageFromApp(post.id)}>X</button> */}
 
 

@@ -55,3 +55,19 @@ atomic design react
     }
   ]
 }
+
+
+GET pobrać
+POST wysyłanie
+DELETE kasowanie
+PUT całość i tworzy zasób
+PATH konkretna linia
+
+200 oK 
+500 błąd
+404 b
+
+promise
+fullfilled
+rejected
+pending
