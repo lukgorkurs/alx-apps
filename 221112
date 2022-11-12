@@ -1,0 +1,42 @@
+jsx a html 
+    eventy, brak dolara
+
+Czym jest komponent
+    funkcja,
+    fragment kodu odpowiedzialny za wykonanie logiki
+
+package.json
+    plik konfiguracyjny (informacje o koniecznych paczkach)
+
+package-lock.json
+    wersje
+
+
+import 
+    w klamrach export
+    bez klamer export default
+
+
+useState
+    metoda do zmiany stanu 
+    na każdy input musi być event onChange
+
+useEffect
+    wykonujemy operacje i jaki wynik
+    służy do side useEffect
+    po zmianie obiektu
+
+
+zmianę obiektu lepiej zdefiniować w samej zmianie a nie w useEffect
+
+Obiect JavaScript a json
+
+
+push a concat w tabeli concat dodaje a push inwazyjnie nadpisuje
+
+--------------------------------------------------------------------------------
+
+
+kompozycja
+
+atomic design react
