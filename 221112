@@ -16,7 +16,6 @@ import
     w klamrach export
     bez klamer export default
 
-
 useState
     metoda do zmiany stanu 
     na każdy input musi być event onChange
@@ -26,6 +25,10 @@ useEffect
     służy do side useEffect
     po zmianie obiektu
 
+wywołanie komponentu - jako znacznik html
+    <TTT> props.children </TTT>
+    <TTT props.xxx />
+
 
 zmianę obiektu lepiej zdefiniować w samej zmianie a nie w useEffect
 
@@ -33,6 +36,9 @@ Obiect JavaScript a json
 
 
 push a concat w tabeli concat dodaje a push inwazyjnie nadpisuje
+
+
+
 
 --------------------------------------------------------------------------------
 
@@ -67,7 +73,14 @@ PATH konkretna linia
 500 błąd
 404 b
 
+
+Stany
+
 promise
-fullfilled
-rejected
-pending
+  fullfilled
+  rejected
+  pending
+
+
+
+Anna Kubów

@@ -130,7 +130,7 @@ useEffect(() => {
      setChat([]);
 
 
-    console.log('test')
+    //console.log('test')
 
     //setChat('');
 
