@@ -19,8 +19,9 @@ function MessagesForm(props) {
         <Button 
           type='submit'
           onClick={props.handleSubmit}>
-          Send
+          Send          
         </Button>        
+        
       </form>
     )
 
