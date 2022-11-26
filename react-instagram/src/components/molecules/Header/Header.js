@@ -1,4 +1,5 @@
-import Link from "../../atoms/Link/link";
+// import Link from "components/atoms/Link/link";
+import { Link } from 'react-router-dom'
 
 function Header(props) {
 
@@ -9,11 +10,13 @@ function Header(props) {
         <ul>
           <li>
 
-            <Link
+            <Link to = "/add">Dodaj nowy post</Link>
+
+            {/* <Link
                 href="#"
                 target= "_blank">
                 Dodaj nowy post                
-            </Link>
+            </Link> */}
 
           </li>
         </ul>

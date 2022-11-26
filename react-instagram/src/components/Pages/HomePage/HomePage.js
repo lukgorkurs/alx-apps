@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import './App.css';
-import MessagesList from '../../molecules/MessagesList/MessagesList';
-import WelcomeMessage from '../../atoms/WelcomeMessage/WelcomeMessage';
-import Header from '../../molecules/Header/Header';
-import MessagesForm from '../../molecules/MessagesForm/MessagesForm';
-import {post, get , remove} from '../../helpers/http.js';
 
-function App() {
+import MessagesList from 'components/molecules/MessagesList/MessagesList';
+import WelcomeMessage from 'components/atoms/WelcomeMessage/WelcomeMessage';
+import Header from 'components/molecules/Header/Header';
+import MessagesForm from 'components/molecules/MessagesForm/MessagesForm';
+import {post, get , remove} from 'components/helpers/http.js';
+import Footer from 'components/molecules/Footer/Foojter';
+
+function HomePage() {
   const [authorInput, setAuthorInput] = useState('');
   const [messageInput, setMessageInput] = useState('');
   const [messages, setMessages] = useState([]);
@@ -137,11 +138,16 @@ function App() {
         handleRemoveMessage={handleRemoveMessage}>
       </MessagesList>
 
+
+      <Footer/>
     </div>
 
     
   );
 }
 
-export default App;
 
+
+
+
+export default HomePage;
