@@ -18,18 +18,3 @@ export const removeMessage = (idToRemove) => {
     method: 'DELETE'
   })
 }
-
-// export const editMessage = (idToEdit) => {
-// fetch(`http://localhost:5000/messages/${idToEdit}`, {
-//   method: 'PUT',
-//   headers: {
-//     'Content-type': "application/json"
-//   },
-//   body: JSON.stringify(editedMessage)
-// })
-
-
-export const getMessage = (idToEdit) => {
-fetch(`http://localhost:5000/messages/${idToEdit}`)
-      .then(res => res.json())
-}

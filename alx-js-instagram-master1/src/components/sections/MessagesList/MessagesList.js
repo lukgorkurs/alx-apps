@@ -1,5 +1,4 @@
-import Button from "components/atoms/Button/Button"
-import { Link } from "react-router-dom"
+import Button from "../../atoms/Button/Button"
 
 function MessagesList(props) {
   return (
@@ -9,12 +8,6 @@ function MessagesList(props) {
           return (
             <li key={message.id}>
               {message.message} - <strong>{message.author}</strong>
-              <Link to={`/edit/${message.id}`}>
-                <Button
-                  text="Edytuj"
-                />
-              </Link>
-
               <Button
                 text="X"
                 onClick={() => props.handleMessageRemove(message.id)}
