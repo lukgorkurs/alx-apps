@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useParams,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import {signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from 'helpers/firebase';
 
-
-import Footer from "components/sections/Footer/Footer";
-import Header from "components/sections/Header/Header";
 import LoginRegisterForm from "components/sections/LoginRegisterForm/LoginRegisterForm";
+import MainTemplate from 'components/templates/MainTemplate';
 
 import { getUsersPass } from 'helpers/http'
 
@@ -12,6 +12,12 @@ function LoginPage() {
   const [mailInput, setMailInput] = useState('');  
   const [passInput, setPassInput] = useState('');
   const [myMessage, setMyMessage] = useState('');
+  const [isLoginError, setIsLoginError] = useState('');
+
+
+  
+
+
 
   // const [isMailInputError, setIsMailInputError] = useState(false);
   // const [isPassInputError, setIsPassInputError] = useState(false);
@@ -45,18 +51,24 @@ function LoginPage() {
 
 
  
-      getUsersPass(mailInput)
-        .then(data => {
-          if (data[0].pass === passInput) {
-            navigate('/');
-          } else {
-            setMyMessage('Błędne hasło')
-          }
+      // getUsersPass(mailInput)
+      //   .then(data => {
+      //     if (data[0].pass === passInput) {
+      //       navigate('/');
+      //     } else {
+      //       setMyMessage('Błędne hasło')
+      //     }
 
 
-        })
-
+      //   })
   
+
+      signInWithEmailAndPassword(auth, mailInput, passInput)
+            .then(()=>{
+                navigate('/')
+            })
+            .catch(() => setIsLoginError(true));
+
 
     setMailInput('');
     setPassInput('');
@@ -65,9 +77,10 @@ function LoginPage() {
 
 
   return (
-    <div>
-      <Header logo="Instagram App"/>
-      <h1>Login Page</h1>
+    
+    <MainTemplate 
+      welcomeText="Login Page">
+
       <LoginRegisterForm
         handleSubmit={handleSubmit}
         mailInput={mailInput}
@@ -79,9 +92,8 @@ function LoginPage() {
         buttonText="Login"
         text={myMessage}
       />
-       
-      <Footer />
-    </div>
+    </MainTemplate>
+
   )
 }
 

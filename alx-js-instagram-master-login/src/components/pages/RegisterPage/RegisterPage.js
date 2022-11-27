@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import {createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from 'helpers/firebase';
 
-import Footer from "components/sections/Footer/Footer";
-import Header from "components/sections/Header/Header";
 import LoginRegisterForm from "components/sections/LoginRegisterForm/LoginRegisterForm";
+import MainTemplate from 'components/templates/MainTemplate';
 
 import { addUser } from 'helpers/http'
 
@@ -53,24 +54,27 @@ function RegisterPage() {
       return;
     }
 
-    console.log('Po walidacji');
+    
 
     // Date.now() zwraca obecny czas jako timestamp
-    // timestamp to jest liczba sekund ktora uplynela od 1.01.1970
-    const randomId = Date.now();
+    // // timestamp to jest liczba sekund ktora uplynela od 1.01.1970
+    // const randomId = Date.now();
 
-    const newUser = {
-      id: uuidv4(),
-      mail: mailInput,
-      pass: passInput,
-      name: null,
-      avatar: null
-    }
+    // const newUser = {
+    //   id: uuidv4(),
+    //   mail: mailInput,
+    //   pass: passInput,
+    //   name: null,
+    //   avatar: null
+    // }
 
-    addUser(newUser)
-      .then(() => {
-        navigate('/');
-      })
+    // addUser(newUser)
+    //   .then(() => {
+    //     navigate('/');
+    //   })
+
+    createUserWithEmailAndPassword(auth,mailInput,passInput);
+
 
     // Czyszczenie pol formularza
     setMailInput('');
@@ -79,12 +83,12 @@ function RegisterPage() {
 
 
   return (
-    <div>
-      <Header logo="Instagram App"/>
-      <h1>Register Page</h1>
+    
+   
+    <MainTemplate welcomeText="Register Page">
       <LoginRegisterForm
         handleSubmit={handleSubmit}
-        loginInput={mailInput}
+        mailInput={mailInput}
         handleMailChange={handleMailChange}
         passInput={passInput}
         handlePassChange={handlePassChange}
@@ -92,8 +96,8 @@ function RegisterPage() {
         isPassInputError={isPassInputError}
         buttonText="Register"
       />
-      <Footer />
-    </div>
+    </MainTemplate>
+    
   )
 }
 

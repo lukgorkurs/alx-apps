@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import Footer from "components/sections/Footer/Footer";
-import Header from "components/sections/Header/Header";
-import WelcomeMessage from "components/sections/WelcomeMessage/WelcomeMessage";
 import MessagesForm from "components/sections/MessagesForm/MessagesForm";
 import { getMessage, editMessage } from 'helpers/http';
+import MainTemplate from 'components/templates/MainTemplate';
 
 function EditPage() {
   const [authorInput, setAuthorInput] = useState('');
@@ -80,25 +78,19 @@ function EditPage() {
   }
 
   return (
-    <div>
-      <Header />
+    
+      <MainTemplate
+          welcomeText="Edit your message">
+          <MessagesForm
+              handleSubmit={handleSubmit}
+              authorInput={authorInput}
+              handleAuthorChange={handleAuthorChange}
+              messageInput={messageInput}
+              handleMessageChange={handleMessageChange}
+              isAuthorInputError={isAuthorInputError}
+              isMessageInputError={isMessageInputError}/>
+        </MainTemplate>
 
-      <WelcomeMessage>
-        <h3>Edit your message</h3>
-      </WelcomeMessage>
-
-      <MessagesForm
-        handleSubmit={handleSubmit}
-        authorInput={authorInput}
-        handleAuthorChange={handleAuthorChange}
-        messageInput={messageInput}
-        handleMessageChange={handleMessageChange}
-        isAuthorInputError={isAuthorInputError}
-        isMessageInputError={isMessageInputError}
-      />
-
-      <Footer />
-    </div>
   )
 }
 

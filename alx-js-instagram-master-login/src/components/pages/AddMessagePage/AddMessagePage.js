@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import MessagesForm from 'components/sections/MessagesForm/MessagesForm';
-import Footer from "components/sections/Footer/Footer"
-import Header from "components/sections/Header/Header"
-import WelcomeMessage from 'components/sections/WelcomeMessage/WelcomeMessage';
+import MainTemplate from 'components/templates/MainTemplate';
 
 import { addMessage } from 'helpers/http'
 
@@ -77,20 +75,21 @@ function AddMessagePage() {
   }
   return (
     <div>
-      <Header logo="Instagram App"/>
-      <WelcomeMessage>
-        <h3>Add new post</h3>
-      </WelcomeMessage>
-      <MessagesForm
-        handleSubmit={handleSubmit}
-        authorInput={authorInput}
-        handleAuthorChange={handleAuthorChange}
-        messageInput={messageInput}
-        handleMessageChange={handleMessageChange}
-        isAuthorInputError={isAuthorInputError}
-        isMessageInputError={isMessageInputError}
-      />
-      <Footer />
+
+      <MainTemplate
+          welcomeText="Add new post">
+            <MessagesForm
+              handleSubmit={handleSubmit}
+              authorInput={authorInput}
+              handleAuthorChange={handleAuthorChange}
+              messageInput={messageInput}
+              handleMessageChange={handleMessageChange}
+              isAuthorInputError={isAuthorInputError}
+              isMessageInputError={isMessageInputError}
+              /> 
+      </MainTemplate>
+
+
     </div>
 
   )
