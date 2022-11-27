@@ -1,0 +1,24 @@
+import Footer from "components/sections/Footer/Footer";
+import Header from "components/sections/Header/Header";
+import LoginRegisterForm from "components/sections/LoginRegisterForm/LoginRegisterForm";
+
+function LoginPage() {
+  return (
+    <div>
+      <Header logo="Instagram App"/>
+      <h1>Login Page</h1>
+      <LoginRegisterForm
+        // handleSubmit={handleSubmit}
+        // authorInput={authorInput}
+        // handleAuthorChange={handleAuthorChange}
+        // messageInput={messageInput}
+        // handleMessageChange={handleMessageChange}
+        // isAuthorInputError={isAuthorInputError}
+        // isMessageInputError={isMessageInputError}
+      />
+      <Footer />
+    </div>
+  )
+}
+
+export default LoginPage;

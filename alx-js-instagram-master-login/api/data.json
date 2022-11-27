@@ -41,5 +41,27 @@
       "message": "aaa"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": 1669543324131,
+      "mail": "user",
+      "pass": "1234",
+      "name": null,
+      "avatar": null
+    },
+    {
+      "id": "e17459aa-d4e3-422d-b621-4072734cec7d",
+      "mail": "admin",
+      "pass": "admin",
+      "name": null,
+      "avatar": null
+    },
+    {
+      "id": "656d72fa-ff63-443b-91b6-964f4095e5aa",
+      "mail": "nowy",
+      "pass": "nowy11",
+      "name": null,
+      "avatar": null
+    }
+  ]
 }

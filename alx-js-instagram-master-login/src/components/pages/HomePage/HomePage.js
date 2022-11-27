@@ -13,7 +13,8 @@ import Footer from 'components/sections/Footer/Footer';
 function HomePage() {
   const [messages, setMessages] = useState([]);
 
-  useEffect(() => {    
+  useEffect(() => {
+    console.log('Test')
     getMessages()
       .then(data => {
         setMessages(data);
