@@ -1,33 +1,42 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import Footer from "components/sections/Footer/Footer";
-import Header from "components/sections/Header/Header";
-import WelcomeMessage from "components/sections/WelcomeMessage/WelcomeMessage";
-import MessagesForm from "components/sections/MessagesForm/MessagesForm";
-import { getMessage, editMessage } from 'helpers/http';
+import Header from 'components/sections/Header/Header';
+import MessagesForm from 'components/sections/MessagesForm/MessagesForm';
+import MessagesList from 'components/sections/MessagesList/MessagesList';
+import WelcomeMessage from 'components/sections/WelcomeMessage/WelcomeMessage';
 
-function EditPage() {
+import {
+  addMessage,
+  removeMessage,
+  getMessages
+} from 'helpers/http';
+import Footer from 'components/sections/Footer/Footer';
+
+function AddMessagePage() {
   const [authorInput, setAuthorInput] = useState('');
   const [isAuthorInputError, setIsAuthorInputError] = useState(false);
   const [messageInput, setMessageInput] = useState('');
   const [isMessageInputError, setIsMessageInputError] = useState(false);
+  const [messages, setMessages] = useState([]);
 
-  // jak odebrac to id z parametrow?
-  // params jest to obiekt z parametrami przychodzacymi do strony
-  const params = useParams();
 
-  // funkcja useNavigate z react-router-dom, zwraca nam funkcje, ktora umozliwia nam przechodzenie miedzy stronami
   const navigate = useNavigate();
 
   useEffect(() => {
-    getMessage(params.messageId)
+    getMessages()
       .then(data => {
-        // potrzebuje wypelnic inputy danymi, ktore pochodza z BE
-        setAuthorInput(data.author)
-        setMessageInput(data.message);
+        setMessages(data);
       })
   }, [])
+
+  const handleAuthorChange = (event) => {
+    setAuthorInput(event.target.value);
+  }
+
+  const handleMessageChange = (event) => {
+    setMessageInput(event.target.value);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -55,38 +64,43 @@ function EditPage() {
       return;
     }
 
-    const editedMessage = {
+    // Date.now() zwraca obecny czas jako timestamp
+    // timestamp to jest liczba sekund ktora uplynela od 1.01.1970
+    const randomId = Date.now();
+
+    const newMessage = {
+      id: randomId,
       author: authorInput,
       message: messageInput
     }
 
-    editMessage(params.messageId, editedMessage)
-      .then(() => {
-        // Jak sie uda zmienic rekord w bazie, to potrzebuje przekierowac uzytkownika na strone glowna
-        navigate('/')
-      })
+    const newMessages = messages.concat(newMessage)
+    
+    setMessages(newMessages)
+    addMessage(newMessage)
 
     // Czyszczenie pol formularza
     setAuthorInput('');
     setMessageInput('');
+
+    navigate("/");
   }
 
-  const handleAuthorChange = (event) => {
-    setAuthorInput(event.target.value);
-  }
+  const handleMessageRemove = (id) => {
+    const filteredMessage = messages.filter(message => {
+      return message.id !== id
+    })
 
-  const handleMessageChange = (event) => {
-    setMessageInput(event.target.value);
+    removeMessage(id)
+    setMessages(filteredMessage)
   }
 
   return (
     <div>
-      <Header />
-
+      <Header logo="Instagram App"/>
       <WelcomeMessage>
-        <h3>Edit your message</h3>
+          <h1>Hello from Add message page</h1>
       </WelcomeMessage>
-
       <MessagesForm
         handleSubmit={handleSubmit}
         authorInput={authorInput}
@@ -96,10 +110,16 @@ function EditPage() {
         isAuthorInputError={isAuthorInputError}
         isMessageInputError={isMessageInputError}
       />
-
+      <WelcomeMessage>
+        <p>Messages List</p>
+      </WelcomeMessage>
+      <MessagesList
+        messages={messages}
+        handleMessageRemove={handleMessageRemove}
+      />
       <Footer />
     </div>
-  )
+  );
 }
 
-export default EditPage;
+export default AddMessagePage;

@@ -1,34 +1,26 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import Header from 'components/sections/Header/Header';
 import MessagesForm from 'components/sections/MessagesForm/MessagesForm';
-import MessagesList from 'components/sections/MessagesList/MessagesList';
+import Footer from "components/sections/Footer/Footer"
+import Header from "components/sections/Header/Header"
 import WelcomeMessage from 'components/sections/WelcomeMessage/WelcomeMessage';
 
-import {
-  addMessage,
-  removeMessage,
-  getMessages
-} from 'helpers/http';
-import Footer from 'components/sections/Footer/Footer';
+import { addMessage } from 'helpers/http'
+
+// 1. Stworz podstrone /about w ktorej wyswietl jakis tekst. Podstrona About powinna rowniez posiadac nawigacje
+
+// 2. Stworz sekcje Footer, w ktorej umiesc nawigacje do strony glownej, do strony add i do strony about
+
+// 3. Uzyj sekcji Footer w kazdej podstronie
 
 function AddMessagePage() {
   const [authorInput, setAuthorInput] = useState('');
   const [isAuthorInputError, setIsAuthorInputError] = useState(false);
   const [messageInput, setMessageInput] = useState('');
   const [isMessageInputError, setIsMessageInputError] = useState(false);
-  const [messages, setMessages] = useState([]);
-
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getMessages()
-      .then(data => {
-        setMessages(data);
-      })
-  }, [])
 
   const handleAuthorChange = (event) => {
     setAuthorInput(event.target.value);
@@ -74,32 +66,20 @@ function AddMessagePage() {
       message: messageInput
     }
 
-    const newMessages = messages.concat(newMessage)
-    
-    setMessages(newMessages)
     addMessage(newMessage)
+      .then(() => {
+        navigate('/');
+      })
 
     // Czyszczenie pol formularza
     setAuthorInput('');
     setMessageInput('');
-
-    navigate("/");
   }
-
-  const handleMessageRemove = (id) => {
-    const filteredMessage = messages.filter(message => {
-      return message.id !== id
-    })
-
-    removeMessage(id)
-    setMessages(filteredMessage)
-  }
-
   return (
     <div>
       <Header logo="Instagram App"/>
       <WelcomeMessage>
-          <h1>Hello from Add message page</h1>
+        <h3>Add new post</h3>
       </WelcomeMessage>
       <MessagesForm
         handleSubmit={handleSubmit}
@@ -110,16 +90,10 @@ function AddMessagePage() {
         isAuthorInputError={isAuthorInputError}
         isMessageInputError={isMessageInputError}
       />
-      <WelcomeMessage>
-        <p>Messages List</p>
-      </WelcomeMessage>
-      <MessagesList
-        messages={messages}
-        handleMessageRemove={handleMessageRemove}
-      />
       <Footer />
     </div>
-  );
+
+  )
 }
 
-export default AddMessagePage;
+export default AddMessagePage
