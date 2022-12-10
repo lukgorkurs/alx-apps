@@ -1,0 +1,11 @@
+Token wysyłamy w headerze
+
+req.params
+req.body
+
+
+navigate 
+
+
+...
+redux MobX Context
