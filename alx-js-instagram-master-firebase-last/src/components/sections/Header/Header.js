@@ -1,3 +1,5 @@
+import { getAuth, signOut } from "firebase/auth";
+import { useParams, useNavigate } from 'react-router-dom';
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -7,12 +9,23 @@ import { GlobalContext } from 'contexts/global'
 import './Header.css'
 import Button from 'components/atoms/Button/Button';
 
-function Header(props) {
+function Header(props) {  
+  const navigate = useNavigate();
 
   const globalState = useContext(GlobalContext);
+  const auth = getAuth();
 
-  //console.log(globalState.headerText)
-  //console.log('header '+globalState.theme)
+  const handleLogout = (event) => {
+      signOut(auth).then(() => {
+        navigate('/')
+        // Sign-out successful.
+      }).catch((error) => {
+        // An error happened.
+      });
+      //console.log('Logout')
+  }
+
+  console.log(auth);
 
   return (
     <header className={globalState.theme}>
@@ -23,11 +36,34 @@ function Header(props) {
           onClick={globalState.changeTheme}
       />
 
-      
+    
+    {/* <Button
+          text="Logout"
+          onClick={signOut()}
+      /> */}
 
-      <nav>
-        <ul>
-          <li>
+
+
+{/*  Hello {auth.currentUser.displayName} */}
+
+
+
+       { auth.currentUser
+       ? <img src={auth.currentUser.photoURL} alt="avatar"/> 
+       : null}
+
+     
+        <ul>          
+            <li>
+
+            Hello:
+            {auth.currentUser
+            ?   auth.currentUser.displayName
+            : null}
+
+              
+            </li>
+            <li>
             {/* komponent Link od react-router-dom, rozni sie tym, ze zamiast atrybutu href jest atrybut to */}
             <Link to="/add">
               Dodaj nowy post
@@ -37,14 +73,26 @@ function Header(props) {
             <Link to="/login">
               Login
             </Link>
-          </li>
+          </li>    
+          <li onClick={handleLogout}>
+              Logout
+          </li>     
           <li>
             <Link to="/register">
               Register
             </Link>
-          </li>
+          </li>    
+          <li>                        
+          {
+          globalState.user
+            ? <Link to="/MyProfile">           
+              My Profile
+            </Link>
+            : ''
+          }         
+          </li>        
         </ul>
-      </nav>
+   
     </header>
   )
 }

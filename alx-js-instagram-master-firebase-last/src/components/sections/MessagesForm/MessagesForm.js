@@ -1,17 +1,26 @@
+import { getAuth, updateProfile } from "firebase/auth";
 import Button from "components/atoms/Button/Button";
 import Input from "components/atoms/Input/Input";
+// import { useContext } from 'react'
+// import { GlobalContext } from 'contexts/global'
 
 function MessagesForm(props) {
+
+  const auth = getAuth();
+
+  // const globalState = useContext(GlobalContext);
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
-        <label>
+         Author: {auth.currentUser.displayName ? auth.currentUser.displayName : auth.currentUser.email} 
+
+        {/* <label>
           Author
           <Input
             value={props.authorInput}
             onChange={props.handleAuthorChange}
           />
-        </label>
+        </label> */}
         {
           props.isAuthorInputError
             ? <small>Pole author nie moze byc puste </small>

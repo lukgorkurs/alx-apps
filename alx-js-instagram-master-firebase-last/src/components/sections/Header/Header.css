@@ -13,5 +13,10 @@ header {
 
 .light {
   color: black;
-  background-color: white;
+  background-color: gray;
+}
+
+img {
+  width: 100px;
+  height: 100px;
 }

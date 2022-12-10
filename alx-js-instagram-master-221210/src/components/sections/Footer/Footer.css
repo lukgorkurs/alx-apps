@@ -1,4 +1,4 @@
-footer {
+.footer {
   padding: 10px;
   background: lightgray;
   display: flex;
@@ -6,13 +6,7 @@ footer {
   align-items: center;
 }
 
-
-.dark {
+.footer-dark {
+  background: black;
   color: white;
-  background-color: black;
-}
-
-.light {
-  color: black;
-  background-color: gray;
 }

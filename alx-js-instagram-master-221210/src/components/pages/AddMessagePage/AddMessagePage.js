@@ -1,10 +1,9 @@
-import { getAuth, updateProfile } from "firebase/auth";
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { GlobalContext } from 'contexts/global';
+
 import MessagesForm from 'components/sections/MessagesForm/MessagesForm';
-import Footer from "components/sections/Footer/Footer"
-import Header from "components/sections/Header/Header"
 import WelcomeMessage from 'components/sections/WelcomeMessage/WelcomeMessage';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 
@@ -17,18 +16,12 @@ import { addMessage } from 'helpers/http'
 // 3. Uzyj sekcji Footer w kazdej podstronie
 
 function AddMessagePage() {
-  const [authorInput, setAuthorInput] = useState('');
-  const [isAuthorInputError, setIsAuthorInputError] = useState(false);
   const [messageInput, setMessageInput] = useState('');
   const [isMessageInputError, setIsMessageInputError] = useState(false);
 
+  const globalState = useContext(GlobalContext);
+
   const navigate = useNavigate();
-
-  const auth = getAuth();
-
-  // const handleAuthorChange = (event) => {
-  //   setAuthorInput(event.target.value);
-  // }
 
   const handleMessageChange = (event) => {
     setMessageInput(event.target.value);
@@ -39,14 +32,9 @@ function AddMessagePage() {
 
     // Pole author nie moze byc puste i pole message musi miec wiecej niz 2 znaki
     const isValid = messageInput.trim().length > 2;
-    
-    // authorInput.trim().length > 0
-    //   && 
 
     // Blad bedzie true/false w zaleznosci od tego, jaka jest wartosc inputa
 
-    // wyswietl blad, jak pole authorInput jest puste
-    setIsAuthorInputError(authorInput.trim().length === 0)
     // wyswietl blad, jak pole messageInput ma mniej lub rowne 2 znaki
     setIsMessageInputError(messageInput.trim().length <= 2)
 
@@ -66,11 +54,13 @@ function AddMessagePage() {
     // timestamp to jest liczba sekund ktora uplynela od 1.01.1970
     const randomId = Date.now();
 
-    //auth.currentUser.displayName
+    const author = globalState.user.displayName
+      ? globalState.user.displayName
+      : globalState.user.email
 
     const newMessage = {
       id: randomId,
-      author: auth.currentUser.displayName ? auth.currentUser.displayName : auth.currentUser.email, 
+      author,
       message: messageInput
     }
 
@@ -81,7 +71,6 @@ function AddMessagePage() {
       .catch(console.log)
 
     // Czyszczenie pol formularza
-    setAuthorInput('');
     setMessageInput('');
   }
   return (
@@ -91,11 +80,8 @@ function AddMessagePage() {
       </WelcomeMessage>
       <MessagesForm
         handleSubmit={handleSubmit}
-        // authorInput={authorInput}
-        // handleAuthorChange={handleAuthorChange}
         messageInput={messageInput}
         handleMessageChange={handleMessageChange}
-        isAuthorInputError={isAuthorInputError}
         isMessageInputError={isMessageInputError}
       />
     </MainTemplate>

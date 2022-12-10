@@ -10,9 +10,18 @@ import AboutPage from 'components/pages/AboutPage/AboutPage';
 import EditPage from 'components/pages/EditPage/EditPage';
 import LoginPage from 'components/pages/LoginPage/LoginPage';
 import RegisterPage from 'components/pages/RegisterPage/RegisterPage';
-import MyProfile from 'components/pages/MyProfile/MyProfile';
+import ProfilePage from 'components/pages/ProfilePage/ProfilePage';
 
 import './index.css';
+
+// Globalny Stan jest to zjawisko, w ktorym definiujemy sobie stan aplikacji raz (np. na poziomie glownego index.js), a nastepnie dowolny komponent moze odczytac z tego stanu, bez przekazywania tego bezposrednio do propsow
+
+// Globalny Stan sklada sie z 2 czesci
+
+// Provider - Miejsce, w ktorym sa przechowywane globalne wartosci
+// Consumer - Pojedynczy komponent, ktory pobiera rzeczy z globalnego stanu
+
+// Kazda zmiana wartosci w providerze, powoduje przerenderowanie Consumera
 
 const routes = createBrowserRouter([
   {
@@ -28,6 +37,10 @@ const routes = createBrowserRouter([
     element: <AboutPage />
   },
   {
+    path: '/myprofile',
+    element: <ProfilePage />
+  },
+  {
     path: '/edit/:messageId',
     element: <EditPage />
   },
@@ -38,10 +51,6 @@ const routes = createBrowserRouter([
   {
     path: '/register',
     element: <RegisterPage />
-  },
-  {
-    path: '/MyProfile',
-    element: <MyProfile />
   }
 ])
 

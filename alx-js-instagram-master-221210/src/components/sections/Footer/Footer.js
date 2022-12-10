@@ -1,23 +1,18 @@
-import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
-import { GlobalContext } from 'contexts/global'
-
+import { GlobalContext } from "contexts/global";
 
 import './Footer.css';
 
 function Footer() {
-
-    
-  const globalState = useContext(GlobalContext);
-
-  //console.log(globalState.footerText)
-  //console.log('footer '+globalState.theme)
+  const globalState = useContext(GlobalContext)
 
   return (
-    <footer className={globalState.theme}>
+    <footer
+      className={`footer ${globalState.theme === 'dark' ? 'footer-dark' : ''}`}
+    >
       Instagram App - Footer
-      {/* {globalState.footerText} */}
 
       <nav>
         <ul>
@@ -44,11 +39,6 @@ function Footer() {
           <li>
             <Link to="/register">
               Register
-            </Link>
-          </li>
-          <li>
-            <Link to="/MyProfile">
-               My profile
             </Link>
           </li>
         </ul>

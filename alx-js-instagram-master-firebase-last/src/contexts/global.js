@@ -1,4 +1,7 @@
-import { useState, createContext } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { useState, createContext, useEffect } from "react";
+
+import { auth } from "helpers/firebase";
 
 export const GlobalContext = createContext();
 
@@ -6,8 +9,26 @@ export const GlobalContext = createContext();
 //GlobalContext.Consumer
 
 function GlobalProvider(props) {
-    const [theme, setTheme]= useState('light');
+    const [theme, setTheme] = useState('light');
+    const [user, setUser] = useState(null);
  
+
+    useEffect(() => {
+        onAuthStateChanged(auth, user => {
+            
+            if (user.email.length !=0)  {
+                setUser(user.email)
+
+            };
+            
+
+
+          //  setUser(user.email);
+            //console.log(' -- '+user.email);
+        })
+    },[]);
+
+
     const changeTheme = () => {
         setTheme(theme === 'light' ? 'dark' : 'light');
     }
@@ -16,7 +37,9 @@ function GlobalProvider(props) {
         headerText: "Jakiś tekst1",
         footerText: "stopka...",
         theme, //zostanie przekazane tak jak theme: theme
-        changeTheme
+        changeTheme,
+        user,
+        setUser
     }
     
 
