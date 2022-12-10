@@ -1,10 +1,23 @@
-import { Link } from "react-router-dom";
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+
+import { GlobalContext } from 'contexts/global'
+
+
 import './Footer.css';
 
 function Footer() {
+
+    
+  const globalState = useContext(GlobalContext);
+
+  //console.log(globalState.footerText)
+  console.log('footer '+globalState.theme)
+
   return (
-    <footer className="footer">
+    <footer className={globalState.theme}>
       Instagram App - Footer
+      {/* {globalState.footerText} */}
 
       <nav>
         <ul>

@@ -1,7 +1,18 @@
-.footer {
+footer {
   padding: 10px;
   background: lightgray;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+
+.dark {
+  color: white;
+  background-color: black;
+}
+
+.light {
+  color: black;
+  background-color: white;
 }

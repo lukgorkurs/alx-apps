@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+import GlobalProvider from 'contexts/global';
+
 import HomePage from 'components/pages/HomePage/HomePage';
 import AddMessagePage from 'components/pages/AddMessagePage/AddMessagePage';
 import AboutPage from 'components/pages/AboutPage/AboutPage';
@@ -42,7 +44,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={routes} />
+    <GlobalProvider>
+      <RouterProvider router={routes} />
+    </GlobalProvider>
   </React.StrictMode>
 );
 
