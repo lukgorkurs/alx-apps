@@ -1,0 +1,115 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+h2 {
+
+  margin-left: 40px;
+
+}
+
+
+ul {
+  
+  list-style-type: none;  
+}
+
+.productLi {
+  float: left;
+}
+
+
+img {
+  width: 150px;
+  height: 200px;   
+  /* animation: App-logo-spin infinite 20s linear; */
+}
+
+.image {
+   margin-right: 40px;
+   margin-bottom: 0px;
+}
+
+.addToCart {
+  background: black;
+  color: white;
+  text-align: center;
+  margin-top: -5px;
+}
+
+h4 {
+  margin-top: -2px;
+  margin-bottom: -5px;
+}
+
+.category {  
+  font-size: smaller;
+}
+
+.price {
+   margin-right: 5px;
+}
+
+.priceP {
+  font-size: small;
+}
+
+.products {    
+  width: 700px;
+  /* background-color: green; */
+}
+
+.main {
+  display:flex;  
+  /* background-color: red; */
+}
+
+.checkList {    
+  
+  
+  
+  /* background-color: lightblue;   */
+  padding-right: 50px;
+}
+
+.left {
+  flex:1;
+  /* background-color: yellow;   */
+}

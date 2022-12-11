@@ -1,0 +1,16 @@
+.header {
+  padding: 10px;
+  background: lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-dark {
+  background: black;
+}
+
+.header-dark h1,
+.header-dark a {
+  color: white;
+}

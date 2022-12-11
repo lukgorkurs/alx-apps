@@ -11,3 +11,28 @@ navigate
 redux MobX Context
 
 Vercel
+
+npm i -g firebase-tools
+
+firebase login
+
+firebase init
+
+
+npm run build
+
+firebase deploy
+
+
+
+
+
+---------------
+
+Next.js
+TypeScript
+
+
+tailwindcss.com
+
+node.js https://coderslab.pl/pl/node-js-developer
