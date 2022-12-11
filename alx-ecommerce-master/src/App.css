@@ -1,0 +1,37 @@
+.products__container {
+  max-width: 700px;
+  padding: 20px;
+}
+
+.products__item {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.products__item img {
+  width: 100%;
+}
+
+.products__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.products__list-container {
+  display: flex;
+  margin: 20px 0;
+}
+
+.products__categories {
+  width: 200px;
+  margin-right: 20px;
+}
+
+.products__categories input {
+  margin-right: 10px;
+}
+
+.products__categories li {
+  margin: 10px 0;
+}
